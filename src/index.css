@@ -1,0 +1,115 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+h1 {
+    font-family: "Cabin", sans-serif;
+}
+
+h2 {
+    font-family: "Cabin", sans-serif;
+}
+
+p {
+    font-family: "Lato", sans-serif;
+}
+
+@layer components {
+    .topbar {
+        @apply text-[#FFFFFF] text-[14px] font-normal leading-[22.4px];
+    }
+}
+
+.dark-button {
+    width: 167px;
+    height: 61px;
+    padding: 16px 33px 16px 33px;
+    gap: 10px;
+    border-radius: 42px;
+    opacity: 0px;
+    background-color: #181818;
+    color: #F6F6F6;
+}
+
+.dark-button:hover {
+    font-family: "Lato", sans-serif;
+    border: 2px solid #181818;
+    background-color: #F6F6F6;
+    color: #181818;
+}
+
+.yellow-button {
+    width: 168px;
+    gap: 10px;
+    height: 61px;
+    border-radius: 42px;
+    padding: 16px 37px 16px 37px;
+    background-color: #FFCC4A;
+    color: #181818;
+}
+
+.yellow-button:hover {
+    background-color: #181818;
+    color: #FFFFFF;
+}
+
+@layer components {
+    .footer {
+        ul {
+            list-style: none;
+            /* Varsayılan liste işaretlerini kaldır */
+            padding-left: 0;
+        }
+
+        li {
+            position: relative;
+            padding-left: 20px;
+            /* Soldan boşluk bırak */
+        }
+
+        li::before {
+            content: "\2022";
+            /* Unicode karakteri */
+            color: white;
+            /* Renk ayarı */
+            font-size: 18px;
+            /* Boyut ayarı */
+            position: absolute;
+            left: 0;
+            /* Sol tarafa hizala */
+        }
+    }
+}
+
+.tag-wrapper:hover .tag {
+    background-color: #FFCC4A;
+}
+
+.banner {
+    width: auto;
+    height: 620px;
+    background-image: url("./assets/Banner2.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.banner-service {
+    width: auto;
+    height: 620px;
+    background-image: url("./assets/service-banner.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+
+.yellow-tag {
+    background-color: #FFCC4A;
+    border-radius: 20px;
+    color: #181818;
+}
+
+.green-tag {
+    background-color: #4EAF4E;
+    color: #F6F6F6;
+    border-radius: 20px;
+}
