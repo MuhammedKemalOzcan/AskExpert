@@ -10,20 +10,20 @@ import Expect from '../Components/Service-Single/Expect'
 import Clients from '../Components/Homepage01/Clients'
 import Video from '../Components/Service-Single/Video'
 
-function Servicesingle() {
+function Servicesingle({ services }) {
     return (
         <div>
             <Topbar />
             <Header />
-            <Banner/>
-            <Services />
-            <Expect/>
-            <Clients/>
-            <Video/>
-            <Contact/>
-            <Faq/>
-            <Footer/>
-            
+            <Banner />
+            <Services services={services}/>
+            <Expect />
+            <Clients />
+            <Video />
+            <Contact />
+            <Faq />
+            <Footer />
+
         </div>
     )
 }

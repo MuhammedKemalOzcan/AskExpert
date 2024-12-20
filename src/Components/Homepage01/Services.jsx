@@ -1,15 +1,7 @@
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import React from 'react'
+import { Link } from 'react-router-dom'
 
-function Services({services}) {
-
-    const navigate = useNavigate();
-
-    
-
-    const handleNavigate = () => {
-        navigate("/service-single")
-    }
+function Services({ services }) {
 
     return (
         <div className='w-full h-[1182px] bg-[#F5F5F5] flex justify-center items-center' >
@@ -22,15 +14,15 @@ function Services({services}) {
                 <div className='grid grid-cols-3 gap-5 w-full'>
                     {
                         services.map((service) => (
-                            <button
+                            <Link
                                 key={service.id}
                                 className='bg-[#EBEBEB] border border-[#EBEBEB] rounded-[20px] flex flex-col gap-2.5 px-12 py-12 text-start hover:bg-[#181818] hover:text-white'
-                                onClick={handleNavigate}
+                                to={`/service-single/${service.id}`}
                             >
                                 <img className='size-20' src={service.image} />
                                 <h1 className='font-semibold text-[25px]' >{service.header}</h1>
                                 <p className='text-[#595566]' >{service.content}</p>
-                            </button>
+                            </Link>
                         ))
                     }
                 </div>

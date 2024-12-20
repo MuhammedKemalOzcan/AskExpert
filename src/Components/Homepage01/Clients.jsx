@@ -20,7 +20,7 @@ function Clients() {
     ])
 
     return (
-        <div className='flex w-full h-[89px] justify-around'>
+        <div className='flex w-full h-[89px] mt-20 mb-24 justify-around'>
             {
                 clients.map((client)=>(
                     <img key={client.id} src={client.image} />

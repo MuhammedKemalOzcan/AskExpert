@@ -23,7 +23,7 @@ function Footer() {
     ])
     return (
         <div className='footer w-full h-[489px] flex justify-center items-center relative'>
-            <img className='w-full absolute' src={bg} />
+            <img className='blur w-full absolute' src={bg} />
             <div className='w-[65%] h-[236px] relative'>
                 <div className='flex flex-col w-[30%] text-white mt-6'>
                     <div className='flex mb-8'>
