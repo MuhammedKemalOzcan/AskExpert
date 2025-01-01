@@ -10,19 +10,19 @@ import Team from '../Components/About/Team'
 import Cta from '../Components/Homepage01/Cta'
 import Footer from '../Components/General/Footer'
 
-function About() {
+function About({ members }) {
   return (
     <div>
-      <Topbar/>
-      <Header/>
-      <Banner/>
-      <Vision/>
-      <Counter/>
-      <Features/>
-      <Video/>
-      <Team/>
-      <Cta/>
-      <Footer/>
+      <Topbar />
+      <Header />
+      <Banner />
+      <Vision />
+      <Counter />
+      <Features />
+      <Video />
+      <Team members={members} />
+      <Cta />
+      <Footer />
     </div>
   )
 }

@@ -1,23 +1,17 @@
 import React, { useState } from 'react'
 import bg from "../../assets/background.svg"
 import plus from "../../assets/plus.svg"
-import gallery1 from "../../assets/gallery1.svg"
-import gallery2 from "../../assets/gallery2.svg"
-import gallery3 from "../../assets/gallery3.svg"
-import gallery4 from "../../assets/gallery4.svg"
-import gallery5 from "../../assets/gallery5.svg"
-import gallery6 from "../../assets/gallery6.svg"
+import { Link, useNavigate } from 'react-router-dom'
 
-function Gallery() {
+function Gallery({ gallery }) {
 
-    const [gallery, setGallery] = useState([
-        { id: 1, title: "Taxes & Efficiency", image: gallery1 },
-        { id: 2, title: "Audit & Evaluation", image: gallery2 },
-        { id: 3, title: "Funds & Investment", image: gallery3 },
-        { id: 4, title: "Finance & Restructring", image: gallery4 },
-        { id: 5, title: "Investment Banking", image: gallery5 },
-        { id: 6, title: "Financial & Projections", image: gallery6 }
-    ]);
+    const navigate = useNavigate();
+
+    const handleNavigate = () => {
+        navigate("/case-study");
+    }
+
+
     return (
         <div className='w-full h-[1146px] flex justify-center'>
             <img className='bg-black absolute w-full ' src={bg} />
@@ -25,14 +19,27 @@ function Gallery() {
                 <p className='border border-[#4EAF4E] bg-[#4EAF4E] text-white rounded-[20px] px-4 w-28 h-6' >PROCESS</p>
                 <div className='w-[730px] flex items-end '>
                     <h1 className='font-bold text-[45px] leading-[52.2px] '>Our client, global analytical techno company, wanted to build market.</h1>
-                    <button className='yellow-button relative left-80 flex justify-center items-center' >
+                    <button
+                        className='yellow-button relative left-80 flex justify-center items-center'
+                        onClick={handleNavigate}
+                    >
                         <p className='font-semibold whitespace-nowrap text-[18px]'>More Gallery</p>
                     </button>
                 </div>
                 <div className='w-[1050px] gap-4 relative grid grid-cols-3 border border-[#FAFAFA] bg-[#FAFAFA] rounded-[30px] p-4 top-16' >
                     {
                         gallery.map((g) => (
-                            <img key={g.id} src={g.image} />
+                            <Link
+                                className='relative group'
+                            >
+                                <img key={g.id} src={g.image} className='h-[308px] rounded-[20px] group-hover:brightness-50 ' />
+                                <button>
+                                    <img src={plus} className='absolute top-2 right-4 opacity-0 group-hover:opacity-100 ' />
+                                </button>
+                                <h1 className='text-[#FFFFFF] font-semibold text-[25px] leading-[29px] opacity-0 group-hover:opacity-100 absolute bottom-20 left-4 '>{g.title}</h1>
+                                <p className='text-[#FFCC4A] opacity-0 group-hover:opacity-100 absolute bottom-12 left-4 '>{g.field}</p>
+                            </Link>
+
                         ))
                     }
                 </div>

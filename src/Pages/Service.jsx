@@ -11,8 +11,8 @@ import Pricing from '../Components/Service/Pricing'
 function Service({ services }) {
   return (
     <div>
-      <Header />
       <Topbar />
+      <Header />
       <Banner />
       <Services services={services} />
       <Process />

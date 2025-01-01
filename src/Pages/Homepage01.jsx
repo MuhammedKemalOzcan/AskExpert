@@ -14,7 +14,7 @@ import Blog from '../Components/Homepage01/Blog'
 import Contact from '../Components/Homepage01/Contact'
 import Footer from '../Components/General/Footer'
 
-function Homepage01({ services }) {
+function Homepage01({ services, blog, gallery }) {
     return (
         <div className='flex flex-col'>
             <Topbar />
@@ -24,11 +24,11 @@ function Homepage01({ services }) {
             <About />
             <Services services={services} />
             <Process />
-            <Gallery />
+            <Gallery gallery={gallery} />
             <Counter />
             <Testimonial />
             <Cta />
-            <Blog />
+            <Blog blog={blog} />
             <Contact />
             <Footer />
         </div>
