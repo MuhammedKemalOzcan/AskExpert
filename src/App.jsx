@@ -32,6 +32,7 @@ import Casestudy from './Pages/Casestudy'
 import Blog from './Pages/Blog'
 import Casesingle from './Pages/Casesingle'
 import axios from 'axios'
+import { ServiceProvider } from './Context'
 function App() {
 
   const [services, setServices] = useState([]);
@@ -160,6 +161,7 @@ function App() {
 
   return (
     <div>
+      <ServiceProvider>
         <Router>
           <Routes>
             <Route path='/' element={<Homepage01 services={services} blog={blog} gallery={gallery} />} />
@@ -174,6 +176,8 @@ function App() {
             <Route path='/case-single/:id' element={<Casesingle gallery={gallery} />} />
           </Routes>
         </Router>
+      </ServiceProvider>
+
     </div>
   )
 }

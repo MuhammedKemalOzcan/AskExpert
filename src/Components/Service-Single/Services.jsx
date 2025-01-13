@@ -2,19 +2,33 @@ import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import arrowRight from "../../assets/arrow-right.svg"
 import arrowLeft from "../../assets/arrow.svg"
+import { useService } from '../../Context';
 
-function Services({services}) {
+function Services() {
 
-  const { id } = useParams();
-  const service = services.find((s) => id === s.id);
   const [activeIndex, setActiveIndex] = useState(1);
+  const { id } = useParams(); // URL'den serviceId alınıyor
+  const { serviceData, fetchServiceData, isLoading, error, fetchServices, services } = useService();
+
+  useEffect(() => {
+    fetchServices(id);
+    if (id) {
+      fetchServiceData(id); // ServiceData çekiliyor
+    }
+  }, [id]);
+
+  console.log(services);
+
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
+  if (!serviceData) return <div>No data found for this service.</div>;
 
   const handleNext = () => {
-    setActiveIndex((prev) => (prev === service.details.length - 1 ? 0 : prev + 1))
+    setActiveIndex((prev) => (prev === serviceData.length - 1 ? 0 : prev + 1))
   }
 
   const handlePrev = () => {
-    setActiveIndex((prev) => (prev === 0 ? service.details.length - 1 : prev - 1))
+    setActiveIndex((prev) => (prev === 0 ? serviceData.length - 1 : prev - 1))
   }
 
   return (
@@ -22,15 +36,11 @@ function Services({services}) {
       <div className='w-[84%] h-[67%] flex flex-col gap-[70px] '>
         <div className='w-[74%] h-[38%] flex justify-between'>
           <div className='w-[54%] h-full flex flex-col gap-4 '>
-            {
-              services.map((service) => (
-                <div>
-                  <img src={import.meta.env.BASE_URL + service.image} className='size-24' />
-                  <h1 className='big-text'>{service.header}</h1>
-                  <p>{service.content}</p>
-                </div>
-              ))
-            }
+            <div>
+              <img src={import.meta.env.BASE_URL + services.imagePath} className='size-24' />
+              <h1 className='big-text'>{services.header}</h1>
+              <p>{services.content}</p>
+            </div>
           </div>
           <div className='flex items-end gap-[26px] '>
             <button
@@ -61,7 +71,7 @@ function Services({services}) {
                   className={`${activeIndex === index ? "bg-[#FFCC4A] size-8 " : "size-8 "}`}
                 />
                 <h1 className='font-semibold text-[25px] leading-[30px] '>{data.header}</h1>
-                <p>{d.detailContent}</p>
+                <p>{data.detailContent}</p>
 
               </div>
             ))

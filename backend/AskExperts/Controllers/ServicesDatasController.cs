@@ -29,18 +29,17 @@ namespace AskExperts.Controllers
         }
 
         // GET: api/ServicesDatas/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<ServicesData>> GetServicesData(int id)
+        [HttpGet("ByServiceId/{serviceId}")]
+        public IActionResult GetByServiceId(int serviceId)
         {
-            var servicesData = await _context.ServicesData.FindAsync(id);
-
-            if (servicesData == null)
+            var serviceDataList = _context.ServicesData.Where(sd => sd.ServicesId == serviceId).ToList();
+            if (!serviceDataList.Any())
             {
-                return NotFound();
+                return NotFound(new { Message = "No service data found for the given ServiceId." });
             }
-
-            return servicesData;
+            return Ok(serviceDataList);
         }
+
 
         // PUT: api/ServicesDatas/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
