@@ -1,9 +1,18 @@
-import React from 'react'
-import banner from "../../assets/banner.svg"
+import React, { useEffect, useState } from 'react'
+import axios from "axios"
 import appointment from "../../assets/appointment.svg"
+import banner from "../../assets/Banner.svg"
+import { useNavigate } from 'react-router-dom'
 
 
 function Banner() {
+
+    const navigate = useNavigate();
+
+    // const handleClick = () => {
+    //     navigate("/services");
+    // }
+
     return (
         <div>
             <div>
@@ -13,11 +22,15 @@ function Banner() {
                 <h1 className='font-bold text-[50px] leading-[58px] ' >Your small business growth advisors</h1>
                 <p className='h-[71px]'>Get help from Alex Moore, a professional business coach with advanced experience on growth and business scaling.</p>
                 <div className='flex gap-4'>
-                    <button className='dark-button text-white'>
+                    <button
+                        className='dark-button text-white'
+                        onClick={() => navigate("/services")}
+                    >
                         Our Services
                     </button>
                     <button
-                        className='bg-white text-black px-[10px] py-[10px] border-black rounded-[44px] gap-2 flex items-center w-[200px] h-[60px]  '
+                        className='bg-white text-black px-[10px] py-[10px] border-black rounded-[44px] gap-2 flex items-center w-[200px] h-[60px]'
+                        onClick={() => navigate("/contact")}
                     >
                         <img className="size-[43px] " src={appointment} />
                         <p className=' w-[127px] h-[29px] text-[#353535] mt-2 font-semibold text-[18px] whitespace-nowrap '>Book a Meeting</p>

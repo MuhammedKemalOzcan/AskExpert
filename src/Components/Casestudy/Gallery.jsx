@@ -33,9 +33,9 @@ function Gallery({ gallery }) {
             <div className='w-[59%] h-[79%] flex flex-col items-center gap-[10px] '>
                 <div className='bg-[#181818] w-[85.5%] h-[10%] py-8 px-12 rounded-[30px] gap-[10px] flex items-center justify-around text-white '>
                     {
-                        categories.map((c) => (
+                        categories.map((c,index) => (
                             <button
-                                key={c}
+                                key={index}
                                 className={`
                                     ${selected === c ?
                                         "text-[#FFCC4A] border-b border-[#FFCC4A]" :

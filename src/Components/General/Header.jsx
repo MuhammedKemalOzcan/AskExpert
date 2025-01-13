@@ -1,17 +1,25 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import messagebox from "../../assets/Messagebox.svg"
 import phone from "../../assets/phone.svg"
 import { NavLink } from 'react-router-dom';
+import axios from 'axios';
 
 function Header() {
 
-    const menuItems = [
-        { name: "Home", path: "/" },
-        { name: "About", path: "/about" },
-        { name: "Services", path: "/services" },
-        { name: "Work", path: "/work" },
-        { name: "Contact", path: "/contact" }
-    ];
+    const [menuItems, setMenuItems] = useState([]);
+
+    const fetchMenuItems = async () => {
+        try {
+            const response = await axios.get("https://localhost:7287/api/MenuItems");
+            setMenuItems(response.data);
+        } catch (error) {
+            console.error("hata oluştu: ",error);
+        }
+    }
+
+    useEffect(() => {
+        fetchMenuItems();
+    },[])
 
     return (
         <div className='w-full h-36 bg-[#1B1B1BE8] flex items-center justify-center'>

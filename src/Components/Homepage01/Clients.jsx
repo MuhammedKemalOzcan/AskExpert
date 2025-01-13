@@ -6,8 +6,6 @@ import client4 from "../../assets/4.svg"
 import client5 from "../../assets/5.svg"
 import client6 from "../../assets/6.svg"
 
-
-
 function Clients() {
 
     const [clients, setClients] = useState([
@@ -20,10 +18,10 @@ function Clients() {
     ])
 
     return (
-        <div className='flex w-full h-[89px] mt-20 mb-24 justify-around'>
+        <div className='flex justify-around items-center'>
             {
-                clients.map((client)=>(
-                    <img key={client.id} src={client.image} />
+                clients.map((client) => (
+                        <img src={client.image} key={client.id} />
                 ))
             }
         </div>
