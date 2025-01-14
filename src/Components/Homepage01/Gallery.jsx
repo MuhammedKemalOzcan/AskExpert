@@ -1,16 +1,26 @@
-import React, { useState } from 'react'
+import React, { useEffect } from 'react'
 import bg from "../../assets/background.svg"
 import plus from "../../assets/plus.svg"
 import { Link, useNavigate } from 'react-router-dom'
+import { useData } from '../../Context';
+function Gallery() {
 
-function Gallery({ gallery }) {
-
+    const { gallery, fetchGallery, isLoading, error } = useData();
     const navigate = useNavigate();
 
     const handleNavigate = () => {
         navigate("/case-study");
     }
 
+    useEffect(() => {
+        fetchGallery();
+    }, []);
+
+    console.log(gallery);
+
+    if (isLoading) return <div>Loading...</div>;
+    if (error) return <div>Error: {error}</div>;
+    if (!gallery) return <div>No data found for this gallery.</div>;
 
     return (
         <div className='w-full h-[1146px] flex justify-center'>
@@ -31,8 +41,9 @@ function Gallery({ gallery }) {
                         gallery.map((g) => (
                             <Link
                                 className='relative group'
+                                key={g.id}
                             >
-                                <img key={g.id} src={g.image} className='h-[308px] rounded-[20px] group-hover:brightness-50 ' />
+                                <img src={import.meta.env.BASE_URL + g.image} className='h-[308px] rounded-[20px] group-hover:brightness-50 ' />
                                 <button>
                                     <img src={plus} className='absolute top-2 right-4 opacity-0 group-hover:opacity-100 ' />
                                 </button>

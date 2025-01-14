@@ -11,7 +11,7 @@ function About() {
     return (
         <div className='w-full h-[800px]  flex justify-center items-center'>
             <div className='flex flex w-[65%] h-[470px] bg-white'>
-                <div className='flex flex-col gap-5 w-[30%] mr-32'>
+                <div className='flex flex-col gap-2 w-[30%] mr-32'>
                     <p className='border border-[#FFCC4A] bg-[#FFCC4A] rounded-2xl px-3 w-[120px] h-6 flex justify-center'>ABOUT US</p>
                     <h1 className='font-semibold text-[45px] leading-[52px] '>About our Consuting Agency Team</h1>
                     <p className='font-semibold text-[18px] leading-[26.55px] '>We create experiences and build products that make business grow</p>

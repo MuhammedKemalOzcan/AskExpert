@@ -1,14 +1,17 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import image from "../../assets/image.svg"
+import { useData } from '../../Context';
 
-function Storyboard({ gallery }) {
+function Storyboard() {
 
     const { id } = useParams();
-    const g = gallery.find((g) => g.id === parseInt(id));
-    const middleIndex = Math.floor(g.storyboard.length / 2);
-    const firstHalf = g.storyboard.slice(0, middleIndex);
-    const secondHalf = g.storyboard.slice(middleIndex);
+    const { gallery, fetchGallerySingle } = useData();
+
+    useEffect(()=>{
+        fetchGallerySingle(id);
+    },[])
+    console.log(gallery);
 
 
     return (
@@ -16,13 +19,12 @@ function Storyboard({ gallery }) {
             <div className='w-[41.5%] h-[81%] flex flex-col gap-7 '>
                 <div className='h-[28%]  flex flex-col gap-6 text-[#595566] '>
                     <h1 className='font-bold text-[30px] leading-[35px] text-black ' >Storyboard</h1>
-                    <p>{firstHalf}</p>
-                    <p>{secondHalf}</p>
+                    <p>{gallery.storyboard}</p>
                 </div>
-                <img src={image} className='w-[89%] h-[39%]  ' />
+                <img src={import.meta.env.BASE_URL + gallery.image} className='w-[89%] h-[39%]  ' />
                 <div className='gap-10 flex flex-col text-[#595566]'>
                     <h1 className='font-bold text-[30px] leading-[35px] text-black '>Project Result</h1>
-                    <p>{g.result}</p>
+                    <p>{gallery.result}</p>
                 </div>
             </div>
         </div>

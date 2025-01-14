@@ -1,14 +1,14 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import arrowRight from "../../assets/arrow-right.svg"
 import arrowLeft from "../../assets/arrow.svg"
-import { useService } from '../../Context';
+import { useData } from '../../Context';
 
 function Services() {
 
   const [activeIndex, setActiveIndex] = useState(1);
   const { id } = useParams(); // URL'den serviceId alınıyor
-  const { serviceData, fetchServiceData, isLoading, error, fetchServices, services } = useService();
+  const { serviceData, fetchServiceData, isLoading, error, fetchServices, services } = useData();
 
   useEffect(() => {
     fetchServices(id);

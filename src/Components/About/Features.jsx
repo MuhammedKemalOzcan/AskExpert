@@ -1,18 +1,20 @@
-import React, { useState } from 'react'
-import chart from "../../assets/improvement.svg"
-import world from "../../assets/branching.svg"
-import stack from "../../assets/stack.svg"
-import settings from "../../assets/settings.svg"
+import React, { useEffect, useState } from 'react'
 import arrow from "../../assets/vector-arrow.svg"
+import axios from 'axios';
 
 function Features() {
 
-    const [features, setFeatures] = useState([
-        { id: 1, img: stack, header: "Creative Ideas", content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eget accumsan augue Donec aliquam." },
-        { id: 2, img: chart, header: "Best Features", content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit." },
-        { id: 3, img: world, header: "Experience", content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eget accumsan augue Donec aliquam." },
-        { id: 4, img: settings, header: "Easy Solutions", content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit." },
-    ])
+    const [features, setFeatures] = useState([]);
+
+    const fetchFeatures = async () => {
+        const response = await axios.get("https://localhost:7287/api/Features");
+        console.log("response data: ", response.data);
+        setFeatures(response.data);
+    };
+
+    useEffect(() => {
+        fetchFeatures();
+    }, []);
 
     return (
         <div className='w-full bg-[#F5F5F5] h-[704px] flex justify-center items-center '>
@@ -31,7 +33,7 @@ function Features() {
                     {
                         features.map((feature) => (
                             <div className='w-[25%] h-max bg-[#FFFFFF] text-black flex flex-col gap-[10px] px-9 py-6 border border-[#EAEAEA] rounded-[20px] items-start'>
-                                    <img src={feature.img} className='size-12' />
+                                    <img src={import.meta.env.BASE_URL + feature.imagePath} className='size-12' />
                                     <h1 className='font-semibold text-[20px] leading-[23.2px] '>{feature.header}</h1>
                                     <p> {feature.content} </p>
                                     <button className='flex items-center gap-2'>

@@ -1,8 +1,14 @@
-import React, { useContext } from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { useData } from '../../Context'
 
-function Services({services}) {
+function Services() {
 
+    const { services, fetchAllServices } = useData();
+
+    useEffect(()=>{
+        fetchAllServices();
+    },[])
 
     return (
         <div className='w-full h-[1182px] bg-[#F5F5F5] flex justify-center items-center' >
@@ -17,12 +23,12 @@ function Services({services}) {
                         services.map((service) => (
                             <Link
                                 key={service.id}
-                                className='bg-[#EBEBEB] border border-[#EBEBEB] rounded-[20px] flex flex-col gap-2.5 px-12 py-12 text-start hover:bg-[#181818] hover:text-white'
+                                className='group bg-[#EBEBEB] border border-[#EBEBEB] rounded-[20px] flex flex-col gap-2.5 px-12 py-12 text-start hover:bg-[#181818] hover:text-white'
                                 to={`/service-single/${service.id}`}
                             >
                                 <img className='size-20' src={import.meta.env.BASE_URL + service.imagePath} />
                                 <h1 className='font-semibold text-[25px]' >{service.header}</h1>
-                                <p className='text-[#595566]' >{service.content}</p>
+                                <p className='text-[#595566] group-hover:text-white' >{service.content}</p>
                             </Link>
                         ))
                     }

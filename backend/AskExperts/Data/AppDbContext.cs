@@ -10,6 +10,10 @@ namespace AskExperts.Data
         public DbSet<MenuItems> MenuItems { get; set; }
         public DbSet<Services> Services { get; set; }
         public DbSet<ServicesData> ServicesData { get; set; }
+        public DbSet<Process> Process { get; set; }
+        public DbSet<Features> Features { get; set; }
+        public DbSet<Gallery> Gallery { get; set; }
+
 
     }
 }

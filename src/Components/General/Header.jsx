@@ -13,13 +13,13 @@ function Header() {
             const response = await axios.get("https://localhost:7287/api/MenuItems");
             setMenuItems(response.data);
         } catch (error) {
-            console.error("hata oluştu: ",error);
+            console.error("hata oluştu: ", error);
         }
     }
 
     useEffect(() => {
         fetchMenuItems();
-    },[])
+    }, [])
 
     return (
         <div className='w-full h-36 bg-[#1B1B1BE8] flex items-center justify-center'>
@@ -54,7 +54,11 @@ function Header() {
                 <div className='w-[25%] h-full flex justify-end'>
                     <button className='w-[67%] h-full flex bg-[#FFFFFF] rounded-[42px] justify-center items-center'>
                         <img className='size-10' src={phone} />
-                        <p className='font-semibold text-[18px] py-2 pr-6 pl-2.5 '>+ (888) 452 1505</p>
+                        <p className='font-semibold text-[18px] py-2 pr-6 pl-2.5 '>
+                            <a href="tel:+8884521505">
+                                + (888) 452 1505
+                            </a>
+                        </p>
                     </button>
                 </div>
 

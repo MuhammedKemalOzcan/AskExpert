@@ -1,20 +1,21 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import number1 from "../../assets/number1.svg"
 import number2 from "../../assets/number2.svg"
 import number3 from "../../assets/number3.svg"
-import consistency from "../../assets/consistency.svg"
-import improvement from "../../assets/improvement.svg"
-import branching from "../../assets/branching.svg"
-import company from "../../assets/company.svg"
+import axios from 'axios'
 
 function Process() {
 
-    const [content, setContent] = useState([
-        { id: 1, image: consistency, header: "Consistency", content: "Podcasting operational change management  workflow." },
-        { id: 2, image: improvement, header: "Improvement", content: "Podcasting operational change management  workflow." },
-        { id: 3, image: branching, header: "Branching", content: "Podcasting operational change management  workflow." },
-        { id: 4, image: company, header: "Company Growth", content: "Podcasting operational change management  workflow." }
-    ]);
+    const [content, setContent] = useState([]);
+
+    const fetchContent = async () => {
+        const response = await axios.get("https://localhost:7287/api/Processes");
+        setContent(response.data);
+    };
+
+    useEffect(() => {
+        fetchContent();
+    }, []);
 
     return (
         <div className='w-full h-[1025px] flex justify-center items-center'>
@@ -59,11 +60,11 @@ function Process() {
                         <br />
                         <p>Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition.</p>
                     </div>
-                    <div className='w-full grid grid-cols-2 gap-4'>
+                    <div className='w-[84%] grid grid-cols-2 gap-4'>
                         {
                             content.map((c) => (
-                                <div key={c.id} className='flex flex-col border border-[#EAEAEA] bg-[#EAEAEA] w-[90%] rounded-[20px] px-8 py-6 gap-2 '>
-                                    <img className='size-12' src={c.image} />
+                                <div key={c.id} className='flex flex-col border border-[#EAEAEA] bg-[#EAEAEA]  h-[100%] rounded-[20px] px-8 py-6 gap-2 '>
+                                    <img className='size-12' src={import.meta.env.BASE_URL + c.imagePath} />
                                     <h2 className='font-semibold text-[20px] leading-[23.2px]'>{c.header}</h2>
                                     <p>{c.content}</p>
                                 </div>

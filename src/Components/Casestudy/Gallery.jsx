@@ -1,16 +1,22 @@
-import React, { useState } from 'react'
-import gallery1 from "../../assets/gallery1.jpg"
-import gallery2 from "../../assets/gallery2.svg"
-import gallery3 from "../../assets/gallery3.svg"
-import gallery4 from "../../assets/gallery4.svg"
-import gallery5 from "../../assets/gallery5.svg"
-import gallery6 from "../../assets/gallery6.svg"
+import React, { useEffect, useState } from 'react'
 import plus from "../../assets/plus.svg"
 import { Link } from 'react-router-dom'
+import { useData } from '../../Context';
+import axios from 'axios';
 
-function Gallery({ gallery }) {
+function Gallery() {
 
     const [selected, setSelected] = useState("All");
+    const { gallery, fetchGallery, isLoading, error } = useData();
+
+    useEffect(()=>{
+            fetchGallery();
+        },[]);
+
+
+    if (isLoading) return <div>Loading...</div>;
+    if (error) return <div>Error: {error}</div>;
+    if (!gallery) return <div>No data found for this gallery.</div>;
 
     const categories = [
         "All",
@@ -54,8 +60,9 @@ function Gallery({ gallery }) {
                             <Link
                                 className='relative group'
                                 to={`/case-single/${g.id}`}
+                                key={g.id}
                             >
-                                <img key={g.id} src={g.image} className='w-[100%] h-[90%] rounded-[20px] group-hover:brightness-50' />
+                                <img  src={g.image} className='w-[100%] h-[90%] rounded-[20px] group-hover:brightness-50' />
                                 <button>
                                     <img src={plus} className='absolute top-2 right-8 opacity-0 group-hover:opacity-100 ' />
                                 </button>
