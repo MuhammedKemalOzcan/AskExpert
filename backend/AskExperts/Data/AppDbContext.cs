@@ -13,6 +13,10 @@ namespace AskExperts.Data
         public DbSet<Process> Process { get; set; }
         public DbSet<Features> Features { get; set; }
         public DbSet<Gallery> Gallery { get; set; }
+        public DbSet<Clients> Clients { get; set; }
+        public DbSet<Member> Members { get; set; }
+        public DbSet<Blog> Blogs { get; set; }
+        public DbSet<BlogDetails> BlogDetails { get; set; }
 
 
     }

@@ -17,7 +17,11 @@ function Cta() {
                         <p>Our software development agency has a growth up to 30% per each year. If you are result-oriented, not afraid to take initiative – drop us a note and join our team!</p>
                         <button className='border border-[#FFCC4A] bg-[#FFCC4A] w-48 rounded-full px-5 py-4 text-black items-center flex'>
                             <img src={phone} />
-                            <p className='font-semibold text-[18px]'>+800 1234 654</p>
+                            <p className='font-semibold text-[18px] whitespace-nowrap '>
+                            <a href="tel:+8001234654">
+                                + 800 1234 654
+                            </a>
+                                </p>
                         </button>
                     </div>
                     <div className='w-[50%] ml-28 h-full flex flex-col justify-center items-center relative'>

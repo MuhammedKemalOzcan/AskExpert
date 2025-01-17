@@ -4,9 +4,9 @@ import bg from "../../assets/contact-bg.svg"
 function Newsletter() {
     return (
         <div className='w-full h-[552px] flex justify-center items-center  '>
-            <div className='w-[56%] h-[46%] bg-black rounded-[20px] flex text-white justify-center items-center gap-[100px] relative '>
+            <div className='w-[63%] h-[46%] bg-black rounded-[20px] flex text-white justify-center items-center gap-[100px] relative '>
                 <div className='flex flex-col'>
-                    <h1 className='font-bold text-[35px] leading-[40.6px] '>Subscribe Our Newsletter</h1>
+                    <h1 className='font-bold text-[35px] leading-[40.6px] whitespace-nowrap '>Subscribe Our Newsletter</h1>
                     <p>Build stronger Customer Relationships with Consultalk</p>
                 </div>
                 <form>

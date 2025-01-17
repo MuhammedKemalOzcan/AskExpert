@@ -8,16 +8,18 @@ function Services() {
 
   const [activeIndex, setActiveIndex] = useState(1);
   const { id } = useParams(); // URL'den serviceId alınıyor
-  const { serviceData, fetchServiceData, isLoading, error, fetchServices, services } = useData();
+  const { serviceData, fetchAllServices, isLoading, error, services,fetchServiceData } = useData();
 
   useEffect(() => {
-    fetchServices(id);
-    if (id) {
-      fetchServiceData(id); // ServiceData çekiliyor
-    }
+    fetchAllServices();
+    fetchServiceData(id);
   }, [id]);
 
-  console.log(services);
+  if (!services || services.length === 0) {
+    return <div>Loading...</div>;
+  }
+
+  const service = services.find((m) => m.id === parseInt(id));
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
@@ -37,9 +39,9 @@ function Services() {
         <div className='w-[74%] h-[38%] flex justify-between'>
           <div className='w-[54%] h-full flex flex-col gap-4 '>
             <div>
-              <img src={import.meta.env.BASE_URL + services.imagePath} className='size-24' />
-              <h1 className='big-text'>{services.header}</h1>
-              <p>{services.content}</p>
+              <img src={import.meta.env.BASE_URL + service.imagePath} className='size-24' />
+              <h1 className='big-text'>{service.header}</h1>
+              <p>{service.content}</p>
             </div>
           </div>
           <div className='flex items-end gap-[26px] '>

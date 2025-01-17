@@ -12,6 +12,9 @@ export const ServiceProvider = ({ children }) => {
   const [error, setError] = useState(null);
 
   const [gallery, setGallery] = useState([]);
+  const [members, setMembers] = useState([]);
+
+  const [blog, setBlog] = useState([]);
 
   // Tüm servisleri çek
   const fetchAllServices = async () => {
@@ -19,20 +22,6 @@ export const ServiceProvider = ({ children }) => {
     setError(null);
     try {
       const response = await axios.get(`https://localhost:7287/api/Services`);
-      setServices(response.data);
-    } catch (err) {
-      setError("Servisler yüklenirken bir hata oluştu.");
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  //id'ye göre servis çek.
-  const fetchServices = async (id) => {
-    setIsLoading(true);
-    setError(null);
-    try {
-      const response = await axios.get(`https://localhost:7287/api/Services/${id}`);
       setServices(response.data);
     } catch (err) {
       setError("Servisler yüklenirken bir hata oluştu.");
@@ -61,7 +50,6 @@ export const ServiceProvider = ({ children }) => {
     setError(null);
     try {
       const response = await axios.get("https://localhost:7287/api/Galleries");
-      console.log("Gallery response:", response.data); // Verinin doğru geldiğini kontrol et
       setGallery(response.data);
     } catch (error) {
       setError("Gallery verileri çekilirken hata oluştu.");
@@ -76,11 +64,52 @@ export const ServiceProvider = ({ children }) => {
     setError(null);
     try {
       const response = await axios.get(`https://localhost:7287/api/Galleries/${id}`);
-      console.log("Gallery response:", response.data); // Verinin doğru geldiğini kontrol et
       setGallery(response.data);
     } catch (error) {
       setError("Gallery verileri çekilirken hata oluştu.");
       console.error("Gallery verileri çekilirken hata oluştu: ", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const fetchMembers = async () => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      const response = await axios.get(`https://localhost:7287/api/Members`);
+      setMembers(response.data);
+    } catch (error) {
+      setError("Member verileri çekilirken hata oluştu.");
+      console.error("Member verileri çekilirken hata oluştu: ", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const fetchMemberSingle = async (id) => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      const response = await axios.get(`https://localhost:7287/api/Members/${id}`);
+      setMembers(response.data);
+    } catch (error) {
+      setError("Member verileri çekilirken hata oluştu.");
+      console.error("Member verileri çekilirken hata oluştu: ", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const fetchBlog = async () => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      const response = await axios.get(`https://localhost:7287/api/Members`);
+      setMembers(response.data);
+    } catch (error) {
+      setError("Member verileri çekilirken hata oluştu.");
+      console.error("Member verileri çekilirken hata oluştu: ", error);
     } finally {
       setIsLoading(false);
     }
@@ -95,11 +124,14 @@ export const ServiceProvider = ({ children }) => {
         serviceData,
         isLoading,
         error,
-        fetchServices,
         fetchAllServices,
         fetchServiceData,
         fetchGallery,
         fetchGallerySingle,
+        fetchMembers,
+        fetchMemberSingle,
+        members,
+        setMembers,
         gallery
       }}
     >

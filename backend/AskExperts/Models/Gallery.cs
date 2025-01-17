@@ -15,6 +15,7 @@
         public string Storyboard { get; set; }
 
         // Sonuç - Result
-        public string Result { get; set; }
+        public string Result { get; set;}
+        public string Cover { get; set; }
     }
 }

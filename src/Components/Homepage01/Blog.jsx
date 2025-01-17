@@ -1,14 +1,32 @@
-import React from 'react'
-import { useState } from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { format } from 'date-fns';
+import { useData } from '../../Context';
 
 
-function Blog({ blog }) {
+function Blog() {
 
+    const [blog, setBlog] = useState([]);
+    const { fetchMembers, members } = useData();
     const navigate = useNavigate();
+
+
     const handleClick = () => {
         navigate("/blog")
     }
+
+    const fetchBlogs = async () => {
+        const response = await axios.get("https://localhost:7287/api/Blogs");
+        setBlog(response.data);
+    }
+
+    useEffect(() => {
+        fetchBlogs();
+        fetchMembers();
+    }, []);
+
+    const sliceBlog = blog.slice(0, 2);
 
     return (
         <div className='flex flex-col bg-[#F5F5F5] w-full h-[1131px] justify-center items-center '>
@@ -25,21 +43,32 @@ function Blog({ blog }) {
                 </div>
                 <div className='flex justify-between mt-12 gap-9'>
                     {
-                        blog.map((b) => (
-                            b.id <= 2 &&
-                            < div key={b.id} className='w-[%] gap-9 flex flex-col ' >
-                                <img src={b.image} />
+                        sliceBlog.map((b) => (
+                            < div key={b.id} className='w-[50%] h-[50%] gap-9 flex flex-col'>
+                                <img src={b.cover} />
                                 <h1 className='font-semibold text-[30px] leading-[35px] '>{b.header}</h1>
                                 <p>{b.content}</p>
                                 <div className='border mb-2'></div>
                                 <div className=' flex items-center gap-8 h-6'>
-                                    <img src={b.userimg} />
-                                    <div className='flex gap-8'>
-                                        <p>{b.user}</p>
-                                        <div className='border'></div>
-                                        <p className='whitespace-nowrap'>{b.publishedDate}</p>
-                                    </div>
-                                    <button className='dark-button '>
+                                    {
+                                        members.map((m) => (
+                                            m.id === b.memberId &&
+                                            <div
+                                                className='flex justify-center items-center gap-4'
+                                                key={m.id}
+                                            >
+                                                <img src={m.memberImage} className='size-16 rounded-[50%]' />
+                                                <div className='flex gap-8 whitespace-nowrap'>
+                                                    <p>{m.name}</p>
+                                                    <div className='border'></div>
+                                                    <p className='whitespace-nowrap'>{format(new Date(b.publishedDate), 'MMMM d, yyyy')}</p>
+                                                </div>
+                                            </div>
+                                        ))
+                                    }
+                                    <button
+                                        className='dark-button'
+                                    >
                                         <p>Read More</p>
                                     </button>
                                 </div>

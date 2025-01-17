@@ -15,7 +15,7 @@ function Banner() {
     return (
         <div className='relative'>
             <img src={banner} className='w-full' />
-            <div className='bg-[#FFFFFFD9] w-[27.5%] h-[42%] absolute top-[30%] left-[18%] rounded-[30px] flex flex-col gap-4 py-12 px-16 '>
+            <div className='bg-[#FFFFFFD9] w-[30%] h-[42%] absolute top-[30%] left-[18%] rounded-[30px] flex flex-col gap-4 py-12 px-16 '>
                 <p className='yellow-tag w-[220px] px-4 ' >CASE STUDIES SINGLE</p>
                 <h1 className='font-bold text-[50px] leading-[58px] whitespace-nowrap '>{gallery.title}</h1>
             </div>

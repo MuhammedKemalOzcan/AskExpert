@@ -1,12 +1,20 @@
-import React, { useState } from 'react'
-import member1 from "../../assets/member1.svg"
-import member2 from "../../assets/member2.svg"
-import member3 from "../../assets/member3.svg"
+import React, { useEffect } from 'react'
 import socialmedia from "../../assets/socialmedia.svg"
+import { useData } from '../../Context';
+import { Link } from 'react-router-dom';
 
-function Team({ members }) {
+function Team() {
 
+    const { members, fetchMembers, isLoading, error } = useData();
 
+    useEffect(() => {
+        fetchMembers();
+    }, []);
+    console.log(members);
+    console.log(isLoading);
+
+    if (isLoading) return <div>Loading...</div>;
+    if (error) return <div>Error: {error}</div>;
 
     return (
         <div className='w-full h-[1181px] bg-[#F5F5F5] flex justify-center items-center  '>
@@ -20,17 +28,20 @@ function Team({ members }) {
                     {
                         members.map((member) => (
                             member.id <= 3 &&
-                            <div className='tag-wrapper flex flex-col items-center text-center gap-[25px] relative ' >
+                            <Link
+                                className='tag-wrapper flex flex-col items-center text-center gap-[25px] relative'
+                                to={`/team-single/${member.id}`}
+                            >
                                 <button>
-                                    <img src={member.img} className='rounded-[20px]' />
+                                    <img src={import.meta.env.BASE_URL + member.memberImage} className='rounded-[20px]' />
                                     <p className='tag absolute bottom-[34%] right-[5%] bg-[#181818] text-white rounded-[20px] py-1 px-5 hover:bg-[#FFCC4A]  '>{member.position}</p>
                                 </button>
                                 <h1>{member.name}</h1>
-                                <p className='w-[82%]'>{member.info}</p>
+                                <p className='w-[82%]'>{member.memberDesc}</p>
                                 <div className='flex gap-[29px] justify-center'>
                                     <img src={socialmedia} />
                                 </div>
-                            </div>
+                            </Link>
                         ))
                     }
                 </div>

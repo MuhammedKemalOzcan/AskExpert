@@ -9,14 +9,12 @@ function Gallery() {
     const navigate = useNavigate();
 
     const handleNavigate = () => {
-        navigate("/case-study");
+        navigate("/work");
     }
 
     useEffect(() => {
         fetchGallery();
     }, []);
-
-    console.log(gallery);
 
     if (isLoading) return <div>Loading...</div>;
     if (error) return <div>Error: {error}</div>;
@@ -38,20 +36,23 @@ function Gallery() {
                 </div>
                 <div className='w-[1050px] gap-4 relative grid grid-cols-3 border border-[#FAFAFA] bg-[#FAFAFA] rounded-[30px] p-4 top-16' >
                     {
-                        gallery.map((g) => (
-                            <Link
-                                className='relative group'
-                                key={g.id}
-                            >
-                                <img src={import.meta.env.BASE_URL + g.image} className='h-[308px] rounded-[20px] group-hover:brightness-50 ' />
-                                <button>
-                                    <img src={plus} className='absolute top-2 right-4 opacity-0 group-hover:opacity-100 ' />
-                                </button>
-                                <h1 className='text-[#FFFFFF] font-semibold text-[25px] leading-[29px] opacity-0 group-hover:opacity-100 absolute bottom-20 left-4 '>{g.title}</h1>
-                                <p className='text-[#FFCC4A] opacity-0 group-hover:opacity-100 absolute bottom-12 left-4 '>{g.field}</p>
-                            </Link>
+                        gallery.length > 1 ?
+                            gallery.map((g) => (
+                                <Link
+                                    className='relative group'
+                                    key={g.id}
+                                    to={`case-single/${g.id}`}
+                                >
+                                    <img src={import.meta.env.BASE_URL + g.image} className='h-[308px] rounded-[20px] group-hover:brightness-50 ' />
+                                    <button>
+                                        <img src={plus} className='absolute top-2 right-4 opacity-0 group-hover:opacity-100 ' />
+                                    </button>
+                                    <h1 className='text-[#FFFFFF] font-semibold text-[25px] leading-[29px] opacity-0 group-hover:opacity-100 absolute bottom-20 left-4 '>{g.title}</h1>
+                                    <p className='text-[#FFCC4A] opacity-0 group-hover:opacity-100 absolute bottom-12 left-4 '>{g.field}</p>
+                                </Link>
 
-                        ))
+                            )) :
+                            <div></div>
                     }
                 </div>
             </div>

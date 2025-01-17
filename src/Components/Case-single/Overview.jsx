@@ -1,20 +1,27 @@
 import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useData } from '../../Context';
+import gallery1 from "../../assets/gallery1.jpg"
 
 function Overview() {
 
     const { id } = useParams();
-    const { gallery, fetchGallerySingle } = useData();
+    const { gallery, fetchGallerySingle, isLoading, error } = useData();
 
     useEffect(() => {
         fetchGallerySingle(id);
     }, [])
+    if (isLoading) return <div>Loading...</div>;
+    if (error) return <div>Error: {error}</div>;
+    if (!gallery) return <div>No data found for this gallery.</div>;
+
+    console.log(gallery);
+    console.log(gallery.points)
 
     return (
         <div className='w-full h-[980px] flex flex-col justify-center items-center relative'>
             <div className='w-[65%] h-full flex flex-col items-center'>
-                <img src={import.meta.env.BASE_URL + gallery.image} className='w-[full] h-[46%] rounded-[20px] relative ' />
+                <img src={import.meta.env.BASE_URL + gallery.cover} className='w-[1100px] h-[46%] rounded-[20px] relative ' />
                 <div className='w-[55.5%] h-[17%] bg-[#181818] rounded-[30px] flex absolute bottom-[40%] text-white items-center justify-around px-16 py-12 gap-3 '>
                     <div>
                         <h1>Case Name</h1>
@@ -36,24 +43,16 @@ function Overview() {
                     <h1 className='font-bold text-[40px] leading-[46.4px] '>Project Overview</h1>
                     <p className='text-[#595566]'>{gallery.overview}</p>
                     <ul className='flex flex-col gap-4 text-[#595566]'>
-                        <li className='flex gap-4'>
-                            <span>
-                                •
-                            </span>
-                            {gallery.points}
-                        </li>
-                        <li className='flex gap-4'>
-                            <span>
-                                •
-                            </span>
-                            {gallery.points}
-                        </li>
-                        <li className='flex gap-4'>
-                            <span>
-                                •
-                            </span>
-                            {gallery.points}
-                        </li>
+                        {gallery?.points && gallery.points.length > 0 ? (
+                            gallery.points.map((point, index) => (
+                                <li key={index} className='flex gap-4'>
+                                    <span>•</span>
+                                    {point}
+                                </li>
+                            ))
+                        ) : (
+                            <p>No data</p>
+                        )}
                     </ul>
                 </div>
             </div>

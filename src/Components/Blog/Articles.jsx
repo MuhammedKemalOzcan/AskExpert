@@ -1,6 +1,24 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
+import { useData } from '../../Context';
+import { format } from 'date-fns';
 
-function Articles({ blog }) {
+function Articles() {
+
+    const [blog, setBlog] = useState([]);
+    const { members, fetchMembers } = useData();
+
+    const fetchBlogs = async () => {
+        const response = await axios.get("https://localhost:7287/api/Blogs");
+        console.log(response.data);
+        setBlog(response.data);
+    }
+
+    useEffect(() => {
+        fetchBlogs();
+        fetchMembers();
+    }, []);
+
     return (
         <div>
             <div className='flex flex-col bg-[#F5F5F5] w-full h-auto justify-center items-center '>
@@ -18,21 +36,27 @@ function Articles({ blog }) {
                         {
                             blog.map((b) => (
                                 < div key={b.id} className='w-[%] gap-9 flex flex-col ' >
-                                    <img src={b.image} />
+                                    <img src={b.cover} className='rounded-[20px]' />
                                     <h1 className='font-semibold text-[30px] leading-[35px] '>{b.header}</h1>
                                     <p>{b.content}</p>
                                     <div className='border mb-2'></div>
-                                    <div className=' flex items-center gap-8 h-6'>
-                                        <img src={b.userimg} />
-                                        <div className='flex gap-8'>
-                                            <p>{b.user}</p>
-                                            <div className='border'></div>
-                                            <p className='whitespace-nowrap'>{b.publishedDate}</p>
-                                        </div>
-                                        <button className='dark-button '>
-                                            <p>Read More</p>
-                                        </button>
-                                    </div>
+                                    {
+                                        members.map((member) => (
+                                            member.id === b.memberId &&
+                                            <div className=' flex items-center gap-8 h-6'>
+                                                <img src={member.memberImage} className='size-16 rounded-[50%]' />
+                                                <div className='flex gap-8'>
+                                                    <p className='whitespace-nowrap'>{member.name}</p>
+                                                    <div className='border'></div>
+                                                     <p className='whitespace-nowrap'>{format(new Date(b.publishedDate), 'MMMM d, yyyy')}</p>
+                                                </div>
+                                                <button className='dark-button '>
+                                                    <p>Read More</p>
+                                                </button>
+                                            </div>
+                                        ))
+                                    }
+
                                     <div className='border mt-[14px]'></div>
                                 </div>
 
