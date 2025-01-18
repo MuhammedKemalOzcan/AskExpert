@@ -13,8 +13,8 @@ export const ServiceProvider = ({ children }) => {
 
   const [gallery, setGallery] = useState([]);
   const [members, setMembers] = useState([]);
-
   const [blog, setBlog] = useState([]);
+  const [blogDetails, setBlogDetails] = useState([]);
 
   // Tüm servisleri çek
   const fetchAllServices = async () => {
@@ -105,11 +105,25 @@ export const ServiceProvider = ({ children }) => {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await axios.get(`https://localhost:7287/api/Members`);
-      setMembers(response.data);
+      const response = await axios.get(`https://localhost:7287/api/Blogs`);
+      setBlog(response.data);
     } catch (error) {
-      setError("Member verileri çekilirken hata oluştu.");
-      console.error("Member verileri çekilirken hata oluştu: ", error);
+      setError("blog verileri çekilirken hata oluştu.");
+      console.error("blog verileri çekilirken hata oluştu: ", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const fetchBlogDetails = async (blogId) => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      const response = await axios.get(`https://localhost:7287/api/BlogDetails/ByBlogId/${blogId}`);
+      setBlogDetails(response.data);
+    } catch (error) {
+      setError("blog verileri çekilirken hata oluştu.");
+      console.error("blog verileri çekilirken hata oluştu: ", error);
     } finally {
       setIsLoading(false);
     }
@@ -130,6 +144,10 @@ export const ServiceProvider = ({ children }) => {
         fetchGallerySingle,
         fetchMembers,
         fetchMemberSingle,
+        fetchBlog,
+        fetchBlogDetails,
+        blog,
+        blogDetails,
         members,
         setMembers,
         gallery

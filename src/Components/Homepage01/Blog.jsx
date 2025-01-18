@@ -6,9 +6,7 @@ import { useData } from '../../Context';
 
 
 function Blog() {
-
-    const [blog, setBlog] = useState([]);
-    const { fetchMembers, members } = useData();
+    const { fetchMembers, members, fetchBlog, blog } = useData();
     const navigate = useNavigate();
 
 
@@ -16,13 +14,8 @@ function Blog() {
         navigate("/blog")
     }
 
-    const fetchBlogs = async () => {
-        const response = await axios.get("https://localhost:7287/api/Blogs");
-        setBlog(response.data);
-    }
-
     useEffect(() => {
-        fetchBlogs();
+        fetchBlog();
         fetchMembers();
     }, []);
 

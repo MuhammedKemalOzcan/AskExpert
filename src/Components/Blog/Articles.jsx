@@ -2,22 +2,19 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useData } from '../../Context';
 import { format } from 'date-fns';
+import { useNavigate } from 'react-router-dom';
 
 function Articles() {
 
-    const [blog, setBlog] = useState([]);
-    const { members, fetchMembers } = useData();
-
-    const fetchBlogs = async () => {
-        const response = await axios.get("https://localhost:7287/api/Blogs");
-        console.log(response.data);
-        setBlog(response.data);
-    }
+    const { members, blog, fetchBlog, fetchMembers } = useData();
+    const navigate = useNavigate();
 
     useEffect(() => {
-        fetchBlogs();
+        fetchBlog();
         fetchMembers();
     }, []);
+
+    console.log(blog);
 
     return (
         <div>
@@ -48,9 +45,12 @@ function Articles() {
                                                 <div className='flex gap-8'>
                                                     <p className='whitespace-nowrap'>{member.name}</p>
                                                     <div className='border'></div>
-                                                     <p className='whitespace-nowrap'>{format(new Date(b.publishedDate), 'MMMM d, yyyy')}</p>
+                                                    <p className='whitespace-nowrap'>{format(new Date(b.publishedDate), 'MMMM d, yyyy')}</p>
                                                 </div>
-                                                <button className='dark-button '>
+                                                <button
+                                                    className='dark-button'
+                                                    onClick={() => navigate(`/blog-single/${b.id}`)}
+                                                >
                                                     <p>Read More</p>
                                                 </button>
                                             </div>

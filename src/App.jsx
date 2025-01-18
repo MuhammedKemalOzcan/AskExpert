@@ -11,6 +11,7 @@ import Casestudy from './Pages/Casestudy'
 import Blog from './Pages/Blog'
 import Casesingle from './Pages/Casesingle'
 import { ServiceProvider } from './Context'
+import BlogSingle from './Pages/Blog-Single';
 function App() {
 
   return (
@@ -27,6 +28,7 @@ function App() {
             <Route path='/team-single/:id' element={<Teamsingle />} />
             <Route path='/work' element={<Casestudy />} />
             <Route path='/blog' element={<Blog />} />
+            <Route path='/blog-single/:id' element={<BlogSingle />} />
             <Route path='/case-single/:id' element={<Casesingle />} />
           </Routes>
         </Router>
