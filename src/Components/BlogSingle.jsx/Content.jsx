@@ -5,7 +5,9 @@ import bg from "../../assets/blog-bg.png"
 import quote from "../../assets/quote.svg"
 import memberbg from "../../assets/member-bg.svg"
 import memberpattern from "../../assets/member-pattern.svg"
-import socialMedia from "../../assets/socialmedia.svg"
+import instagram from "../../assets/instagram.svg"
+import fb from "../../assets/Facebook.svg"
+import tw from "../../assets/twitter.png"
 import axios from 'axios';
 
 
@@ -80,7 +82,19 @@ function Content() {
                         <h1>{currentMember.name}</h1>
                         <p>{currentMember.position}</p>
                         <p>{currentMember.memberDesc}</p>
-                        <img src={socialMedia} />
+                        <div className='flex gap-4'>
+                            <button>
+                                <img src={instagram} className='size-6' />
+                            </button>
+                            <button>
+                                <img src={fb} className='size-6' />
+                            </button>
+                            <button>
+                                <img src={tw} className='size-6' />
+                            </button>
+                        </div>
+
+
                     </div>
                 </div>
             </div>

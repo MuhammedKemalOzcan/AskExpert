@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AskExperts")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8975841f911e6d0e3752994d384322f158f477a0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cb7eaa46dccc777b0726bb5cec7a2e55cedb63e4")]
 [assembly: System.Reflection.AssemblyProductAttribute("AskExperts")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AskExperts")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

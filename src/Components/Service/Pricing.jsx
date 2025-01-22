@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
 import bg from "../../assets/plan-background.svg"
 import points from "../../assets/points.svg"
+import { useNavigate } from 'react-router-dom'
 
 
 function Pricing() {
+
+    const navigate = useNavigate();
 
     const [plans, setPlans] = useState([
         { id: 1, img: bg, plan: "Basic Plan", text: "The argument in favor of using to filler text goes something.", price: "35", points: ["24/7 system monitoring", "Security management", "Secure finance backup", "Remote support"] },
@@ -13,7 +16,7 @@ function Pricing() {
     ])
 
     return (
-        <div className='w-full h-[1016px] bg-[#F5F5F5] flex justify-center items-center '>
+        <div id='pricing' className='w-full h-[1016px] bg-[#F5F5F5] flex justify-center items-center '>
             <div className='flex flex-col w-[62.5%] h-[71%]flex items-center gap-6 '>
                 <p className='green-tag px-3.5 '>PRICING</p>
                 <h1 className='mt-4 font-bold text-[45px] leading-[52.2px] '>OUR PRICING PLAN</h1>
@@ -41,7 +44,9 @@ function Pricing() {
                                             ))
                                         }
                                     </div>
-                                    <button className=' bg-white border border-[#D6D6D6] py-4 px-[109px] rounded-[42px] hover:bg-[#FFCC4A] hover:border-[#FFCC4A] '>
+                                    <button
+                                        onClick={() => navigate("/contact")}
+                                        className=' bg-white border border-[#D6D6D6] py-4 px-[109px] rounded-[42px] hover:bg-[#FFCC4A] hover:border-[#FFCC4A] '>
                                         <p className='font-semibold text-[18px] leading-[29px] whitespace-nowrap '>Get This Plan</p>
                                     </button>
                                 </div>

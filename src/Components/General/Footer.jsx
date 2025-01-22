@@ -1,26 +1,34 @@
-import React, { useState } from 'react'
+import React, { useEffect } from 'react'
 import bg from "../../assets/footerbg.svg"
 import messagebox from "../../assets/messagebox.svg"
+import { Link, useNavigate } from 'react-router-dom'
+import { useData } from '../../Context';
 
 
 
 function Footer() {
 
-    const [product, setProduct] = useState([
-        { id: 1, header: "Product", name: "Service" },
-        { id: 2, header: "Product", name: "FAQ" },
-        { id: 3, header: "Product", name: "Single Service" },
-        { id: 4, header: "Product", name: "Get Quote" },
-        { id: 5, header: "Product", name: "Prices" },
-    ])
-    const [company, setCompany] = useState([
-        { id: 1, header: "Company", name: "About" },
-        { id: 2, header: "Company", name: "News" },
-        { id: 5, header: "Company", name: "Contacts" },
-        { id: 3, header: "Company", name: "Testimonials" },
-        { id: 4, header: "Company", name: "Our Team" },
-        { id: 6, header: "Company", name: "Our approach" }
-    ])
+    const navigate = useNavigate();
+    const { fetchCompanyFooter, companyFooter, fetchProductFooter, productFooter, isLoading } = useData();
+
+    useEffect(() => {
+        const hash = window.location.hash;
+        if (hash) {
+            const element = document.querySelector(hash);
+            if (element) element.scrollIntoView({ behavior: 'smooth' });
+        }
+        fetchCompanyFooter();
+        fetchProductFooter();
+    }, []);
+
+    if (isLoading) {
+        return <p>Loading...</p>; // Yükleme tamamlanmadan veri gösterme
+    }
+
+    if (companyFooter.length === 0) {
+        return <p>No services found.</p>; // Boş veri durumu
+    }
+
     return (
         <div className='footer w-full h-[489px] flex justify-center items-center relative'>
             <img className='blur w-full absolute' src={bg} />
@@ -40,12 +48,16 @@ function Footer() {
                     <h1 className='text-[20px]'>Product</h1>
                     <div className='border w-[32px] h-[3px] border-[#FFCC4A] bg-[#FFCC4A] mb-4' ></div>
                     {
-                        product.map((p) => (
-                            <div key={p.id} className='flex items-center gap-2'>
+                        productFooter.map((product) => (
+                            <Link
+                                key={product.id}
+                                className='flex items-center gap-2'
+                                to={product.url.startsWith("/") ? product.url : `/${product.url}`}
+                            >
                                 <ul>
-                                    <li>{p.name}</li>
+                                    <li>{product.name}</li>
                                 </ul>
-                            </div>
+                            </Link>
                         ))
                     }
                 </div>
@@ -53,12 +65,16 @@ function Footer() {
                     <h1 className='text-[20px]'>Company</h1>
                     <div className='border w-[32px] h-[3px] border-[#FFCC4A] bg-[#FFCC4A] mb-4' ></div>
                     {
-                        company.map((c) => (
-                            <div key={c.id} className='flex items-center gap-2'>
+                        companyFooter.map((company) => (
+                            <Link
+                                key={company.id}
+                                className='flex items-center gap-2'
+                                to={company.url.startsWith("/") ? company.url : `/${company.url}`}
+                            >
                                 <ul className='footer'>
-                                    <li>{c.name}</li>
+                                    <li>{company.name}</li>
                                 </ul>
-                            </div>
+                            </Link>
                         ))
                     }
                 </div>
@@ -68,6 +84,7 @@ function Footer() {
                     <p>1700 W Blancke St, kiyev port south USA, America</p>
                     <button
                         className='bg-white text-black py-4 px-6 rounded-full mt-8 '
+                        onClick={() => navigate("/contact")}
                     >
                         <p>Book an Appoitment</p>
                     </button>

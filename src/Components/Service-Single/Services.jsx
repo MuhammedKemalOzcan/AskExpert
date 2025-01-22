@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import {  useParams } from 'react-router-dom'
 import arrowRight from "../../assets/arrow-right.svg"
 import arrowLeft from "../../assets/arrow.svg"
 import { useData } from '../../Context';
@@ -8,7 +8,7 @@ function Services() {
 
   const [activeIndex, setActiveIndex] = useState(1);
   const { id } = useParams(); // URL'den serviceId alınıyor
-  const { serviceData, fetchAllServices, isLoading, error, services,fetchServiceData } = useData();
+  const { serviceData, fetchAllServices, isLoading, error, services, fetchServiceData } = useData();
 
   useEffect(() => {
     fetchAllServices();

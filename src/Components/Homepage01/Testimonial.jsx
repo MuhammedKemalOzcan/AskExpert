@@ -14,6 +14,8 @@ function Testimonial() {
         setClients(response.data);
     }
 
+    
+
     useEffect(() => {
         fetchClients();
     }, [])
@@ -34,7 +36,7 @@ function Testimonial() {
 
     return (
         <div className='w-full h-[475px] flex flex-col justify-center items-center mt-40 '>
-            <div className='flex flex-col place-items-center w-[40%] relative'>
+            <div id='testimonials' className='flex flex-col place-items-center w-[40%] relative'>
                 <p className='border border-[#4EAF4E] bg-[#4EAF4E] rounded-full text-white px-2 '>CLIENT FEEDBACK</p>
                 <div key={currentClient.id}>
                     <h1 className='text-[#CECECE] text-center font-bold text-[40px] leading-[46.4px] '>“{currentClient.comment}”</h1>

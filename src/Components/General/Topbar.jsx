@@ -20,10 +20,18 @@ function Topbar() {
                     <p>725 Park Ave, New York</p>
                 </div>
                 <div className='flex gap-7'>
-                    <img className='size-4' src={insta} />
-                    <img className='size-4' src={fb} />
-                    <img className='size-4' src={tw} />
-                    <img className='size-4' src={linkedin} />
+                    <button>
+                        <img className='size-4' src={insta} />
+                    </button>
+                    <button>
+                        <img className='size-4' src={fb} />
+                    </button>
+                    <button>
+                        <img className='size-4' src={tw} />
+                    </button>
+                    <button>
+                        <img className='size-4' src={linkedin} />
+                    </button>
                 </div>
             </div>
         </div>

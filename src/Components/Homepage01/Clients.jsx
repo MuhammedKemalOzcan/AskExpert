@@ -5,8 +5,33 @@ import client3 from "../../assets/3.svg"
 import client4 from "../../assets/4.svg"
 import client5 from "../../assets/5.svg"
 import client6 from "../../assets/6.svg"
+import Slider from 'react-slick'
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 
 function Clients() {
+
+    var settings = {
+        slidesToShow: 6,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 1500,
+        arrows: false,
+        dots: false,
+        pauseOnHover: false,
+        responsive: [{
+            breakpoint: 768,
+            settings: {
+                slidesToShow: 4
+            }
+        }, {
+            breakpoint: 520,
+            settings: {
+                slidesToShow: 3
+            }
+        }]
+    };
 
     const [clients, setClients] = useState([
         { id: 1, image: client1 },
@@ -18,13 +43,19 @@ function Clients() {
     ])
 
     return (
-        <div className='flex justify-around items-center'>
+        <Slider {...settings} className='flex justify-center w-full h-40 gap-32'>
             {
                 clients.map((client) => (
-                        <img src={client.image} key={client.id} />
+                    <img
+                        className='size-40'
+                        key={client.id}
+                        src={client.image}
+                        alt={`Client ${client.id}`}
+                    />
                 ))
             }
-        </div>
+        </Slider>
+
     )
 }
 

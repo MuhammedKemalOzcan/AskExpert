@@ -15,8 +15,6 @@ function Overview() {
     if (error) return <div>Error: {error}</div>;
     if (!gallery) return <div>No data found for this gallery.</div>;
 
-    console.log(gallery);
-    console.log(gallery.points)
 
     return (
         <div className='w-full h-[980px] flex flex-col justify-center items-center relative'>

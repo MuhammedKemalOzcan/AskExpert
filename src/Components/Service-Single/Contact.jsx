@@ -6,8 +6,8 @@ import photo from "../../assets/servicesingle-photo.svg"
 function Contact() {
   return (
     <div className='w-full h-[783px] flex justify-center items-center'>
-                <div className=' w-[62.5%] h-[574px] flex gap-[70px] '>
-                    <div className=' w-[50%] h-full flex flex-col gap-4'>
+                <div className=' w-[67%] h-[574px] flex gap-[70px] '>
+                    <div className=' w-[50%] h-full flex flex-col gap-2'>
                         <p className='bg-[#FFCC4A] w-28 pt-1 px-4 rounded-full'>PROCESS</p>
                         <h1 className='font-bold text-[45px] ' >Contact Us. it's Easy.</h1>
                         <p>Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative.</p>

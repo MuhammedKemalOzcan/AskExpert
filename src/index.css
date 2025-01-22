@@ -70,6 +70,16 @@ p {
     border-radius: 30px;
 }
 
+.slick-track {
+    position: relative;
+    top: 0;
+    left: 0;
+    display: flex;
+    height: 160px;
+    gap: 132px;
+}
+
+
 @layer components {
     .footer {
         ul {

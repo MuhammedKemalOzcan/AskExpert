@@ -14,8 +14,6 @@ function Articles() {
         fetchMembers();
     }, []);
 
-    console.log(blog);
-
     return (
         <div>
             <div className='flex flex-col bg-[#F5F5F5] w-full h-auto justify-center items-center '>

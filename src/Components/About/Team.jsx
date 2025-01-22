@@ -10,8 +10,7 @@ function Team() {
     useEffect(() => {
         fetchMembers();
     }, []);
-    console.log(members);
-    console.log(isLoading);
+
 
     if (isLoading) return <div>Loading...</div>;
     if (error) return <div>Error: {error}</div>;
@@ -30,6 +29,7 @@ function Team() {
                             member.id <= 3 &&
                             <Link
                                 className='tag-wrapper flex flex-col items-center text-center gap-[25px] relative'
+                                key={member.id}
                                 to={`/team-single/${member.id}`}
                             >
                                 <button>

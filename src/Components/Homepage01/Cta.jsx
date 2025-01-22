@@ -8,7 +8,7 @@ import photo3 from "../../assets/photo3.svg"
 
 function Cta() {
     return (
-        <div className='w-full h-[525px] flex mt-40 justify-center items-center'>
+        <div  className='w-full h-[525px] flex mt-40 justify-center items-center'>
             <div className='w-[65%] h-full flex bg-[#181818] border border-black rounded-[30px] justify-center mb-[10%] relative'>
                 <div className='w-[90%] h-full flex items-center'>
                     <div className=' w-[40%] h-[300px] flex flex-col text-white gap-4'>

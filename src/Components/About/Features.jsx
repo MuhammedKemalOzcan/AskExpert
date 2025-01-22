@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import arrow from "../../assets/vector-arrow.svg"
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function Features() {
 
     const [features, setFeatures] = useState([]);
+    const navigate = useNavigate();
 
     const fetchFeatures = async () => {
         const response = await axios.get("https://localhost:7287/api/Features");
-        console.log("response data: ", response.data);
         setFeatures(response.data);
     };
 
@@ -25,21 +26,25 @@ function Features() {
                         <h1 className='font-bold  text-[45px] leading-[52.2px] '>Our core values & principles</h1>
                         <p className='w-[55%]'>Capitalize on low hanging fruit to identify a ballpark value added activity beta test. Override the digital divide with additional from DevOps.</p>
                     </div>
-                    <button className='dark-button flex place-self-end ml-20 '>
+                    <button
+                        onClick={() => navigate("/contact")}
+                        className='dark-button flex place-self-end ml-20 '>
                         <p className='font-semibold text-[18px] whitespace-nowrap leading-[29px] '>Get in touch</p>
                     </button>
                 </div>
                 <div className='flex gap-[35px] '>
                     {
                         features.map((feature) => (
-                            <div className='w-[25%] h-max bg-[#FFFFFF] text-black flex flex-col gap-[10px] px-9 py-6 border border-[#EAEAEA] rounded-[20px] items-start'>
-                                    <img src={import.meta.env.BASE_URL + feature.imagePath} className='size-12' />
-                                    <h1 className='font-semibold text-[20px] leading-[23.2px] '>{feature.header}</h1>
-                                    <p> {feature.content} </p>
-                                    <button className='flex items-center gap-2'>
-                                        <p className='font-semibold text-[18px] leading-[28.8px] '>Read More</p>
-                                        <img src={arrow} />
-                                    </button>
+                            <div key={feature.id} className='w-[25%] h-max bg-[#FFFFFF] text-black flex flex-col gap-[10px] px-9 py-6 border border-[#EAEAEA] rounded-[20px] items-start'>
+                                <img src={import.meta.env.BASE_URL + feature.imagePath} className='size-12' />
+                                <h1 className='font-semibold text-[20px] leading-[23.2px] '>{feature.header}</h1>
+                                <p> {feature.content} </p>
+                                <button
+                                    onClick={() => navigate("/services")}
+                                    className='flex items-center gap-2'>
+                                    <p className='font-semibold text-[18px] leading-[28.8px] '>Read More</p>
+                                    <img src={arrow} />
+                                </button>
                             </div>
                         ))
                     }

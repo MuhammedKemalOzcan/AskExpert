@@ -17,6 +17,8 @@ namespace AskExperts.Data
         public DbSet<Member> Members { get; set; }
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<BlogDetails> BlogDetails { get; set; }
+        public DbSet<Footer> Footer { get; set; }
+        public DbSet<CompanyFooter> CompanyFooters { get; set; }
 
 
     }

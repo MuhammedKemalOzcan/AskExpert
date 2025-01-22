@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {
     Accordion,
     AccordionHeader,
     AccordionBody,
 } from "@material-tailwind/react";
+import { useLocation } from 'react-router-dom';
 
 function Icon({ id, open }) {
     return (
@@ -25,9 +26,19 @@ function Faq() {
 
     const handleOpen = (value) => setOpen(open === value ? 0 : value);
 
-    return (
-        <div className='w-full h-[1200px] flex justify-center items-center '>
+    const location = useLocation();
 
+    useEffect(() => {
+        if (location.hash) {
+            const element = document.querySelector(location.hash);
+            if (element) {
+                element.scrollIntoView({ behavior: "smooth" });
+            }
+        }
+    }, [location]);
+
+    return (
+        <div id='faq' className='w-full h-[1200px] flex justify-center items-center '>
             <div className='bg-[#F5F5F5] w-[59%] h-[75%] flex flex-col justify-center items-center rounded-[30px] py-[151px] px-60 '>
                 <div className='flex flex-col justify-center items-center mb-10'>
                     <p className='green-tag px-5 w-[75px] '>FAQ</p>

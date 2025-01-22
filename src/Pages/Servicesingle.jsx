@@ -9,6 +9,7 @@ import Banner from '../Components/Service-Single/Banner'
 import Expect from '../Components/Service-Single/Expect'
 import Clients from '../Components/Homepage01/Clients'
 import Video from '../Components/Service-Single/Video'
+import { Route, Router, Routes } from 'react-router-dom'
 
 function Servicesingle({ services }) {
     return (
@@ -16,13 +17,14 @@ function Servicesingle({ services }) {
             <Topbar />
             <Header />
             <Banner />
-            <Services services={services}/>
+            <Services services={services} />
             <Expect />
             <Clients />
             <Video />
             <Contact />
             <Faq />
             <Footer />
+
 
         </div>
     )

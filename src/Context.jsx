@@ -16,6 +16,9 @@ export const ServiceProvider = ({ children }) => {
   const [blog, setBlog] = useState([]);
   const [blogDetails, setBlogDetails] = useState([]);
 
+  const [productFooter, setProductFooter] = useState([]);
+  const [companyFooter, setCompanyFooter] = useState([]);
+
   // Tüm servisleri çek
   const fetchAllServices = async () => {
     setIsLoading(true);
@@ -129,6 +132,32 @@ export const ServiceProvider = ({ children }) => {
     }
   };
 
+  const fetchProductFooter = async () => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      const response = await axios.get(`https://localhost:7287/api/Footers`);
+      setProductFooter(response.data);
+    } catch (error) {
+      setError("product footer verileri çekilirken hata oluştu.");
+      console.error("blog verileri çekilirken hata oluştu: ", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+  const fetchCompanyFooter = async () => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      const response = await axios.get(`https://localhost:7287/api/CompanyFooters`);
+      setCompanyFooter(response.data);
+    } catch (error) {
+      setError("company footer verileri çekilirken hata oluştu.");
+      console.error("blog verileri çekilirken hata oluştu: ", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   // Context'i sağlayan yapı
   return (
@@ -138,6 +167,8 @@ export const ServiceProvider = ({ children }) => {
         serviceData,
         isLoading,
         error,
+        productFooter,
+        companyFooter,
         fetchAllServices,
         fetchServiceData,
         fetchGallery,
@@ -146,6 +177,8 @@ export const ServiceProvider = ({ children }) => {
         fetchMemberSingle,
         fetchBlog,
         fetchBlogDetails,
+        fetchProductFooter,
+        fetchCompanyFooter,
         blog,
         blogDetails,
         members,
