@@ -12,6 +12,9 @@ import Blog from './Pages/Blog'
 import Casesingle from './Pages/Casesingle'
 import { ServiceProvider } from './Context'
 import BlogSingle from './Pages/Blog-Single';
+import Pages from './Pages/Pages';
+import Admin from './Pages/Admin';
+import Panel from './Pages/Panel';
 function App() {
 
   return (
@@ -30,6 +33,9 @@ function App() {
             <Route path='/blog' element={<Blog />} />
             <Route path='/blog-single/:id' element={<BlogSingle />} />
             <Route path='/case-single/:id' element={<Casesingle />} />
+            <Route path='/pages' element={<Pages />} />
+            <Route path='/admin' element={<Admin />} />
+            <Route path='/panel' element={<Panel />} />
           </Routes>
         </Router>
       </ServiceProvider>

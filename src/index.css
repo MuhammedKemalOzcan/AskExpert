@@ -79,6 +79,10 @@ p {
     gap: 132px;
 }
 
+.login{
+    background-image: url("./assets/Login.svg");
+}
+
 
 @layer components {
     .footer {
