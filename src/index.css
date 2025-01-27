@@ -83,6 +83,44 @@ p {
     background-image: url("./assets/Login.svg");
 }
 
+.bg{
+    background-image: url("./assets/workbg.svg");
+    filter: brightness(0.1);
+}
+
+.slick {
+    width: 1637px;
+    height: 530px;
+    margin-top: 100px;
+}
+
+.slick-next{
+    width: 180px;
+    height: 180px;
+}
+
+.slick-next {
+    background-color: black; /* Örnek renk */
+    width: 70px;
+    height: 70px;
+    border-radius: 50%; /* Yuvarlak ok */
+    z-index: 1; /* Okların görünür olması için z-index artırın */
+  }
+  .slick-prev {
+    background-color: white; /* Örnek renk */
+    width: 70px;
+    height: 70px;
+    border-radius: 50%; /* Yuvarlak ok */
+    z-index: 1; /* Okların görünür olması için z-index artırın */
+  }
+  .slick-next:before {
+    color: white; /* Oku değiştirme */
+    font-size: 20px;
+  }
+  .slick-prev:before{
+    color: #151515;
+  }
+
 
 @layer components {
     .footer {

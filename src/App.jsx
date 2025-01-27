@@ -15,6 +15,7 @@ import BlogSingle from './Pages/Blog-Single';
 import Pages from './Pages/Pages';
 import Admin from './Pages/Admin';
 import Panel from './Pages/Panel';
+import Homepage02 from './Pages/Homepage02';
 function App() {
 
   return (
@@ -23,6 +24,7 @@ function App() {
         <Router>
           <Routes>
             <Route path='/' element={<Homepage01 />} />
+            <Route path='/homepage2' element={<Homepage02 />} />
             <Route path='/about' element={<About />} />
             <Route path='/services' element={<Service />} />
             <Route path='/service-single/:id' element={<Servicesingle />} />
