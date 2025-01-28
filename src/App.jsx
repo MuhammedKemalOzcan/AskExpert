@@ -16,6 +16,7 @@ import Pages from './Pages/Pages';
 import Admin from './Pages/Admin';
 import Panel from './Pages/Panel';
 import Homepage02 from './Pages/Homepage02';
+import NotFound from './Pages/NotFound';
 function App() {
 
   return (
@@ -38,6 +39,7 @@ function App() {
             <Route path='/pages' element={<Pages />} />
             <Route path='/admin' element={<Admin />} />
             <Route path='/panel' element={<Panel />} />
+            <Route path='/*' element={<NotFound />} />
           </Routes>
         </Router>
       </ServiceProvider>

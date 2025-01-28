@@ -14,7 +14,7 @@ function Footer2() {
     ])
     const UtilityPages = ([
         { id: 1, title: "Start Here", path: "/" },
-        { id: 2, title: "404 Not Found", path: "/404" },
+        { id: 2, title: "404 Not Found", path: "/*" },
         { id: 3, title: "Password Protected", path: "/admin" },
         { id: 5, title: "Changelog", path: "/changelog" },
     ])
