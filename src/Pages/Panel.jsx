@@ -1,16 +1,14 @@
 import React from 'react'
-import Header from '../Components/General/Header'
-import Topbar from '../Components/General/Topbar'
-import Footer from '../Components/General/Footer'
 import PageControl from '../components/Panel/PageControl'
+import Layout from '../Layout'
 
 function Panel() {
     return (
         <div>
-            <Topbar />
-            <Header />
-            <PageControl />
-            <Footer />
+            <Layout>
+                <PageControl />
+            </Layout>
+
         </div>
     )
 }

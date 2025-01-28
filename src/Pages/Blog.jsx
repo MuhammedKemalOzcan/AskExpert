@@ -4,15 +4,15 @@ import Header from '../Components/General/Header'
 import Footer from '../Components/General/Footer'
 import Cta from '../Components/Team/Cta'
 import Articles from '../Components/Blog/Articles'
+import Layout from '../Layout'
 
 function Blog({ blog }) {
     return (
         <div>
-            <Topbar />
-            <Header />
-            <Articles blog={blog} />
-            <Cta />
-            <Footer />
+            <Layout>
+                <Articles blog={blog} />
+                <Cta />
+            </Layout>
         </div>
     )
 }

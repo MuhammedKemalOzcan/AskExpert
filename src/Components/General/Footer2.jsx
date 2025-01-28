@@ -16,7 +16,7 @@ function Footer2() {
         { id: 1, title: "Start Here", path: "/" },
         { id: 2, title: "404 Not Found", path: "/*" },
         { id: 3, title: "Password Protected", path: "/admin" },
-        { id: 5, title: "Changelog", path: "/changelog" },
+        { id: 5, title: "Changelog", path: "/panel" },
     ])
 
     return (

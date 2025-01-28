@@ -1,16 +1,15 @@
 import React from 'react'
-import Header from '../Components/General/Header'
-import Topbar from '../Components/General/Topbar'
-import Footer from '../Components/General/Footer'
 import Navigate from '../components/Pages/Navigate'
+import Layout from '../Layout'
 
 function Pages() {
     return (
         <div>
-            <Topbar />
-            <Header />
-            <Navigate/>
-            <Footer />
+            <Layout>
+                <Navigate />
+            </Layout>
+
+
         </div>
     )
 }

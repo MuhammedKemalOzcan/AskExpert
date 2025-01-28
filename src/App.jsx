@@ -17,33 +17,35 @@ import Admin from './Pages/Admin';
 import Panel from './Pages/Panel';
 import Homepage02 from './Pages/Homepage02';
 import NotFound from './Pages/NotFound';
+import { LayoutProvider, useLayout } from './LayoutContext';
+import HomepageLayout from './HomepageLayout';
 function App() {
 
   return (
     <div>
-      <ServiceProvider>
-        <Router>
-          <Routes>
-            <Route path='/' element={<Homepage01 />} />
-            <Route path='/homepage2' element={<Homepage02 />} />
-            <Route path='/about' element={<About />} />
-            <Route path='/services' element={<Service />} />
-            <Route path='/service-single/:id' element={<Servicesingle />} />
-            <Route path='/contact' element={<ContactPage />} />
-            <Route path='/team' element={<Team />} />
-            <Route path='/team-single/:id' element={<Teamsingle />} />
-            <Route path='/work' element={<Casestudy />} />
-            <Route path='/blog' element={<Blog />} />
-            <Route path='/blog-single/:id' element={<BlogSingle />} />
-            <Route path='/case-single/:id' element={<Casesingle />} />
-            <Route path='/pages' element={<Pages />} />
-            <Route path='/admin' element={<Admin />} />
-            <Route path='/panel' element={<Panel />} />
-            <Route path='/*' element={<NotFound />} />
-          </Routes>
-        </Router>
-      </ServiceProvider>
-
+      <LayoutProvider>
+        <ServiceProvider>
+          <Router>
+            <Routes>
+              <Route path='/' element={<HomepageLayout />} />
+              <Route path='/about' element={<About />} />
+              <Route path='/services' element={<Service />} />
+              <Route path='/service-single/:id' element={<Servicesingle />} />
+              <Route path='/contact' element={<ContactPage />} />
+              <Route path='/team' element={<Team />} />
+              <Route path='/team-single/:id' element={<Teamsingle />} />
+              <Route path='/work' element={<Casestudy />} />
+              <Route path='/blog' element={<Blog />} />
+              <Route path='/blog-single/:id' element={<BlogSingle />} />
+              <Route path='/case-single/:id' element={<Casesingle />} />
+              <Route path='/pages' element={<Pages />} />
+              <Route path='/admin' element={<Admin />} />
+              <Route path='/panel' element={<Panel />} />
+              <Route path='/*' element={<NotFound />} />
+            </Routes>
+          </Router>
+        </ServiceProvider>
+      </LayoutProvider>
     </div>
   )
 }
