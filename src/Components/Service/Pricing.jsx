@@ -36,8 +36,10 @@ function Pricing() {
                                     </div>
                                     <div className='flex flex-col w-[64%] h-[30%]  gap-4 '>
                                         {
-                                            plan.points.map((p) => (
-                                                <p className='flex justify-start items-center'>
+                                            plan.points.map((p,index) => (
+                                                <p
+                                                    key={index}
+                                                    className='flex justify-start items-center'>
                                                     <img src={points} />
                                                     {p}
                                                 </p>

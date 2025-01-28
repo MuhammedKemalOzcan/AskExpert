@@ -30,7 +30,7 @@ function Articles() {
                     <div className='flex grid grid-cols-2 justify-between mt-12 gap-9'>
                         {
                             blog.map((b) => (
-                                < div key={b.id} className='w-[%] gap-9 flex flex-col ' >
+                                < div key={b.id} className=' gap-9 flex flex-col ' >
                                     <img src={b.cover} className='rounded-[20px]' />
                                     <h1 className='font-semibold text-[30px] leading-[35px] '>{b.header}</h1>
                                     <p>{b.content}</p>
@@ -38,7 +38,7 @@ function Articles() {
                                     {
                                         members.map((member) => (
                                             member.id === b.memberId &&
-                                            <div className=' flex items-center gap-8 h-6'>
+                                            <div key={member.id} className=' flex items-center gap-8 h-6'>
                                                 <img src={member.memberImage} className='size-16 rounded-[50%]' />
                                                 <div className='flex gap-8'>
                                                     <p className='whitespace-nowrap'>{member.name}</p>
@@ -57,7 +57,6 @@ function Articles() {
 
                                     <div className='border mt-[14px]'></div>
                                 </div>
-
                             ))
                         }
                     </div>
